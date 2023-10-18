@@ -140,7 +140,7 @@ python3 RegionIndel/bin/RegionIndel_step3.py  --assembly_dir test_sv  --ref_file
 ### Step 4 (optional): 
 ```
 python3 RegionIndel/bin/remove_redundancy.py.py   \
--i ./test_sv/RegionIndel_Step3_Results/Aquila_Contig_final_sorted_sv.vcf  \
+-i ./test_sv/RegionIndel_Step3_Results/RegionIndel_Contig_final_sorted_sv.vcf  \
 -o ./test_sv/Remove_redundancy/
 
 ```
@@ -155,7 +155,7 @@ Coverage| Memory| Time for one SV on a single node
 
 
 ## Final Output:
-**test_sv/RegionIndel_step3_results:** Aquila_contig_final.vcf
+**test_sv/RegionIndel_step3_results:** RegionIndel_contig_final.vcf
 ```
 test_sv
 |
@@ -173,10 +173,10 @@ test_sv
 |       
 |
 |-Assembly_Contigs_files
-|    |-Aquila_Contig_chr*.fasta                    --> (final contigs fasta file for the target region)
-|    |-Aquila_Contig_chr*.bam                      --> (final contigs bam file for the target region)
-|    |-Aquila_Contig_chr*_hp1.fasta                     --> (final contigs fasta file for haplotype 1)
-|    └-Aquila_Contig_chr*_hp2.fasta                     --> (final contigs fasta file for haplotype 2)
+|    |-RegionIndel_Contig_chr*.fasta                    --> (final contigs fasta file for the target region)
+|    |-RegionIndel_Contig_chr*.bam                      --> (final contigs bam file for the target region)
+|    |-RegionIndel_Contig_chr*_hp1.fasta                     --> (final contigs fasta file for haplotype 1)
+|    └-RegionIndel_Contig_chr*_hp2.fasta                     --> (final contigs fasta file for haplotype 2)
 |
 └-RegionIndel_step3_results
      └-RegionIndel_Contig_final.vcf --> (final VCF including SNPs, small Indels and SVs)
@@ -184,7 +184,7 @@ test_sv
      
 ```
 
-## Final contig bam file (Aquila_Contig_chr*.bam) diplayed in IGV (SV + 25kb left and right flanking regions):
+## Final contig bam file (RegionIndel_Contig_chr*.bam) diplayed in IGV (SV + 25kb left and right flanking regions):
 <p align="center">
 	<img src="src/igv1.png"  width="650">
 </p>
