@@ -1,16 +1,5 @@
 # :milky_way: RegionIndel :eagle: 
-[![BioConda Install](https://img.shields.io/conda/dn/bioconda/RegionIndel.svg?style=flag&label=BioConda%20install)](https://anaconda.org/bioconda/RegionIndel)
-# Install through Bioconda:
-```
-conda install RegionIndel
-```
-(Please ensure <a href="https://bioconda.github.io/user/install.html#set-up-channels">channels</a> are properly setup for bioconda before installing) 
 
-```
-RegionIndel_step1 --help 
-RegionIndel_step2 --help
-RegionIndel_step3 --help
-```
 
 ## Dependencies for Github installation:
 RegionIndel utilizes <a href="https://www.python.org/downloads/">Python3 (+ numpy, pysam, sortedcontainers, and scipy)</a>, <a href="http://samtools.sourceforge.net/">SAMtools</a>, and <a href="https://github.com/lh3/minimap2">minimap2</a>. To be able to execute the above programs by typing their name on the command line, the program executables must be in one of the directories listed in the PATH environment variable (".bashrc"). <br />
@@ -27,7 +16,7 @@ chmod +x install.sh
 
 
 ## source folder:
-After running "./install.sh", a folder "source" would be download.
+After running "./install.sh", a folder "source" would be downloaded.
 
 ## Running The Code:
 Put the "RegionIndel/bin" in the ".bashrc" file, and source the ".bashrc" file <br />
