@@ -24,7 +24,7 @@ Or just use the fullpath of "**RegionIndel_step1.py**", "**RegionIndel_step2.py*
 
 *We provide  <a href="https://github.com/maiziezhoulab/RegionIndel/blob/main/example_data/run_example_data.md">a test example dataset</a> to run the whole pipeline. 
 
-### Step0:
+### Step 0:
 We added "orphan end reads" (OER) to our pipeline to boost the performance for more accurate assembly. Orphan end reads are defined as a read pair in which each mate is aligned to a different chromosome. The below code is how we prepare OER in a whole genome scale.
 ```
 ## specify the wgs bam path
