@@ -137,6 +137,15 @@ python3 RegionIndel/bin/RegionIndel_step3.py  --assembly_dir test_sv  --ref_file
 
 **--clean:** default = 1. You can choose to delete intermediate files or no
 
+### Step 4 (optional): 
+```
+python3 RegionIndel/bin/remove_redundancy.py.py   \
+-i ./test_sv/RegionIndel_Step3_Results/Aquila_Contig_final_sorted_sv.vcf  \
+-o ./test_sv/Remove_redundancy/
+
+```
+
+Sometimes the results will have duplicate calls, and to remove these calls, you can use **remove_redundancy.py**. 
 
 
 #### Memory/Time Usage For RegionIndel
