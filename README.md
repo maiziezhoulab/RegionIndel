@@ -24,10 +24,53 @@ Or just use the fullpath of "**RegionIndel_step1.py**", "**RegionIndel_step2.py*
 
 *We provide  <a href="https://github.com/maiziezhoulab/RegionIndel/blob/main/example_data/run_example_data.md">a test example dataset</a> to run the whole pipeline. 
 
+### Step0:
+We added "orphan end reads" (OER) to our pipeline to boost the performance for more accurate assembly. Orphan end reads are defined as a read pair in which each mate is aligned to a different chromosome. The below code is how we prepare OER in a whole genome scale.
+```
+## specify the wgs bam path
+wgs_bam=possorted_bam.bam
+
+# create directory for by chromosme bam files
+mkdir bam_by_chr
+
+# extract bam file for chr1-chr22 and hs37d5, and add index
+for i in {1..22}
+do
+samtools view -Sb $wgs_bam chr$i > bam_by_chr/possorted_bam_chr${i}.bam
+samtools index bam_by_chr/possorted_bam_chr${i}.bam
+done
+
+samtools view -Sb $wgs_bam hs37d5 > bam_by_chr/possorted_bam_hs37d5.bam
+samtools index bam_by_chr/possorted_bam_hs37d5.bam
+
+# extract OER part1
+for i in {1..22}
+do
+python3 RegionIndel/bin/OER_SCAN_part1.py \
+-i bam_by_chr/possorted_bam_chr${i}.bam \
+-o ./OER/part1
+done
+
+# extract OER part2
+for i in {1..22}
+do
+python3 RegionIndel/bin/OER_SCAN_part2.py \
+-i bam_by_chr/possorted_bam_chr${i}.bam \
+-chrn chr${i} -o ./OER/part2 \
+-rq ./OER/part1
+done
+
+python3 RegionIndel/bin/OER_SCAN_part2.py \
+-i bam_by_chr/possorted_bam_hs37d5.bam \
+-chrn hs37d5 -o ./OER/part2 \
+-rq ./OER/part1
+```
+After running the above code, you will have output folder "./OER/part2" that contains important OER information. Now, you are good to run the RegionIndel pipeline.
+
 
 ### Step 1: 
 ```
-python3 RegionIndel/bin/RegionIndel_step1.py  --bam_file selected.bam --vcf_file test_freebayes.vcf --chr_num 3 --out_dir test_sv
+python3 RegionIndel/bin/RegionIndel_step1.py  --bam_file selected.bam --vcf_file test_freebayes.vcf --chr_num 3 --out_dir test_sv --fd ./OER/part2
 
 ```
 #### *Required parameters
@@ -37,6 +80,8 @@ python3 RegionIndel/bin/RegionIndel_step1.py  --bam_file selected.bam --vcf_file
 **--vcf_file:** "test_freebayes.vcf" is a VCF file generated from variant caller like "FreeBayes". How to get the vcf file, you can also check <a href="https://github.com/maiziezhoulab/RegionIndel/blob/master/src/How_to_get_bam_and_vcf.md">here</a>. 
 
 **--chr_num:** "3" is the chromosome number you need to define for the target region or the structural variant you are interested in.
+
+**--OER_dir:**  ./OER/part2 is the OER folder you generated in step 0.
 
 
 #### *Optional parameters
@@ -90,8 +135,7 @@ python3 RegionIndel/bin/RegionIndel_step3.py  --assembly_dir test_sv  --ref_file
 
 **--num_of_threads:** number of threads, default = 1
 
-**--clean:** default = 1. You can choose to delete 
-diate files or no
+**--clean:** default = 1. You can choose to delete intermediate files or no
 
 
 
