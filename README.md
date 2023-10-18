@@ -7,7 +7,7 @@ conda install RegionIndel
 (Please ensure <a href="https://bioconda.github.io/user/install.html#set-up-channels">channels</a> are properly setup for bioconda before installing) 
 
 ```
-RegionIndel_step1 --help test
+RegionIndel_step1 --help 
 RegionIndel_step2 --help
 RegionIndel_step3 --help
 ```
