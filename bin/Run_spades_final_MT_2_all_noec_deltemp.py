@@ -96,7 +96,7 @@ def run_spades_all(chr_start,chr_end,output_dir,num_of_threads,minicontig_dir):
                 else:
                     pool = Pool(num_of_threads)
                     out_dir_list = []
-        output_file = "Aquila_Contig" + "_chr" + str(chr_num) + ".fasta"
+        output_file = "RegionIndel_Contig" + "_chr" + str(chr_num) + ".fasta"
         Concatenate_start(in_dir,minicontig_dir,output_file,"xin")   
         
         # delete assembly files

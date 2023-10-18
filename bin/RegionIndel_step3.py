@@ -17,8 +17,8 @@ parser = ArgumentParser(description="Run depth all:")
 parser.add_argument('--chr_num','-start',type=int,help="chromosome number for target variant or region", required=True)
 parser.add_argument('--var_size','-v',type=int,help="variant size, cut off size for indel and SV, default = 1", default=1)
 parser.add_argument('--num_of_threads','-t',type=int,help="number of threads, default = 1", default=1)
-parser.add_argument('--assembly_dir','-i_dir', help="Required parameter, folder to store Aquila assembly results at Aquila assembly steps",required=True)
-parser.add_argument('--out_dir','-o_dir', help="Directory to store outputs, default = ./AquilaSV_Step3_Results", default='AquilaSV_Step3_Results/')
+parser.add_argument('--assembly_dir','-i_dir', help="Required parameter, folder to store RegionIndel assembly results at RegionIndel assembly steps",required=True)
+parser.add_argument('--out_dir','-o_dir', help="Directory to store outputs, default = ./RegionIndel_Step3_Results", default='RegionIndel_Step3_Results/')
 parser.add_argument('--ref_file','-r', help="Required parameter, human reference fasta file",required=True)
 parser.add_argument('--delete_temp_file','-d', action='store_true')
 
@@ -71,7 +71,7 @@ def Split_supercontig_by_haplotype(fasta_file,xin):
 def Split_haplotype(chr_start,chr_end,in_dir):
     pool = Pool(processes=chr_end - chr_start +1)
     for chr_num in range(chr_start,chr_end + 1):
-        input_file = in_dir + "Aquila_Contig_chr" + str(chr_num) + ".fasta"
+        input_file = in_dir + "RegionIndel_Contig_chr" + str(chr_num) + ".fasta"
         pool.apply_async(Split_supercontig_by_haplotype,(input_file,"xin"))
     pool.close()
     while len(active_children()) > 1:
@@ -105,10 +105,10 @@ def get_var(hap_paf_sorted,hap_var_txt,xin):
 
 def assembly_based_variants_call_paf(chr_start,chr_end,ref_file,in_dir,out_dir):
     for chr_num in range(chr_start,chr_end + 1):
-        hap1_file = in_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp1.fasta"
-        hap2_file = in_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp2.fasta"
-        hap1_paf = out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp1.paf"
-        hap2_paf = out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp2.paf"
+        hap1_file = in_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp1.fasta"
+        hap2_file = in_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp2.fasta"
+        hap1_paf = out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp1.paf"
+        hap2_paf = out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp2.paf"
         logger.info("start getting paf...")
         pool = Pool(processes=2)
         pool.apply_async(get_paf,(ref_file,hap1_file,hap1_paf,"xin"))
@@ -123,10 +123,10 @@ def assembly_based_variants_call_paf(chr_start,chr_end,ref_file,in_dir,out_dir):
 
 def assembly_based_variants_call_sort(chr_start,chr_end,out_dir):
     for chr_num in range(chr_start,chr_end + 1):
-        hap1_paf = out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp1.paf"
-        hap2_paf = out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp2.paf"
-        hap1_paf_sorted = out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp1.paf.sorted" 
-        hap2_paf_sorted = out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp2.paf.sorted" 
+        hap1_paf = out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp1.paf"
+        hap2_paf = out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp2.paf"
+        hap1_paf_sorted = out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp1.paf.sorted" 
+        hap2_paf_sorted = out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp2.paf.sorted" 
         pool = Pool(processes=2)
         pool.apply_async(sort_paf,(hap1_paf,hap1_paf_sorted,"xin"))
         pool.apply_async(sort_paf,(hap2_paf,hap2_paf_sorted,"xin"))
@@ -140,10 +140,10 @@ def assembly_based_variants_call_sort(chr_start,chr_end,out_dir):
 
 def assembly_based_variants_call(chr_start,chr_end,out_dir):
     for chr_num in range(chr_start,chr_end + 1):
-        hap1_paf_sorted = out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp1.paf.sorted"
-        hap2_paf_sorted = out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp2.paf.sorted"
-        hap1_var_txt = out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp1.var.txt"
-        hap2_var_txt = out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp2.var.txt"
+        hap1_paf_sorted = out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp1.paf.sorted"
+        hap2_paf_sorted = out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp2.paf.sorted"
+        hap1_var_txt = out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp1.var.txt"
+        hap2_var_txt = out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp2.var.txt"
         pool = Pool(processes=2)
         pool.apply_async(get_var,(hap1_paf_sorted,hap1_var_txt,"xin"))
         pool.apply_async(get_var,(hap2_paf_sorted,hap2_var_txt,"xin"))
@@ -177,13 +177,13 @@ def Call_SNV_info_from_contigs(chr_start,chr_end,out_dir,num_of_threads):
                 print("finished chr" + str(chr_num))
             else:
                 pool = Pool(num_of_threads)
-    curr_file = out_dir + "Aquila_SNPs.vcf"
+    curr_file = out_dir + "RegionIndel_SNPs.vcf"
     exists = os.path.exists(curr_file)
     if exists:
         Popen("rm -rf " + curr_file,shell=True).wait()
     for chr_num in range(chr_start,chr_end + 1):
-        one_vcf = out_dir + "Aquila_SNPs_chr" + str(chr_num) + ".vcf"
-        cat_cmd = "cat " + one_vcf  + " >> " + out_dir + "Aquila_SNPs.vcf"
+        one_vcf = out_dir + "RegionIndel_SNPs_chr" + str(chr_num) + ".vcf"
+        cat_cmd = "cat " + one_vcf  + " >> " + out_dir + "RegionIndel_SNPs.vcf"
         Popen(cat_cmd,shell=True).wait()
     print("finish SNV calling")
 
@@ -210,13 +210,13 @@ def Call_SV_del_from_contigs(chr_start,chr_end,out_dir,num_of_threads,v_size):
                 print("finished chr" + str(chr_num))
             else:
                 pool = Pool(num_of_threads)
-    curr_file = out_dir + "Aquila_DEL.vcf"
+    curr_file = out_dir + "RegionIndel_DEL.vcf"
     exists = os.path.exists(curr_file)
     if exists:
         Popen("rm -rf " + curr_file,shell=True).wait()
     for chr_num in range(chr_start,chr_end + 1):
-        one_vcf = out_dir + "Aquila_DEL_chr" + str(chr_num) + ".vcf"
-        cat_cmd = "cat " + one_vcf  + " >> " + out_dir + "Aquila_DEL.vcf"
+        one_vcf = out_dir + "RegionIndel_DEL_chr" + str(chr_num) + ".vcf"
+        cat_cmd = "cat " + one_vcf  + " >> " + out_dir + "RegionIndel_DEL.vcf"
         Popen(cat_cmd,shell=True).wait()
 
     print("finish DEL calling")
@@ -245,13 +245,13 @@ def Call_SV_ins_from_contigs(chr_start,chr_end,out_dir,num_of_threads,v_size):
                 print("finished chr" + str(chr_num))
             else:
                 pool = Pool(num_of_threads)
-    curr_file = out_dir + "Aquila_INS.vcf"
+    curr_file = out_dir + "RegionIndel_INS.vcf"
     exists = os.path.exists(curr_file)
     if exists:
         Popen("rm -rf " + curr_file,shell=True).wait()
     for chr_num in range(chr_start,chr_end + 1):
-        one_vcf = out_dir + "Aquila_INS_chr" + str(chr_num) + ".vcf"
-        cat_cmd = "cat " + one_vcf  + " >> " + out_dir + "Aquila_INS.vcf"
+        one_vcf = out_dir + "RegionIndel_INS_chr" + str(chr_num) + ".vcf"
+        cat_cmd = "cat " + one_vcf  + " >> " + out_dir + "RegionIndel_INS.vcf"
         Popen(cat_cmd,shell=True).wait()
 
     print("finish INS calling")
@@ -259,11 +259,11 @@ def Call_SV_ins_from_contigs(chr_start,chr_end,out_dir,num_of_threads,v_size):
 
 
 def Merge_all_variants(out_dir):
-    snp_vcf = out_dir + "Aquila_SNPs.vcf"
-    del_vcf = out_dir + "Aquila_DEL.vcf"
-    ins_vcf = out_dir + "Aquila_INS.vcf"
-    final_vcf = out_dir + "Aquila_final.vcf"
-    final_sort_vcf = out_dir + "Aquila_final_sorted.vcf"
+    snp_vcf = out_dir + "RegionIndel_SNPs.vcf"
+    del_vcf = out_dir + "RegionIndel_DEL.vcf"
+    ins_vcf = out_dir + "RegionIndel_INS.vcf"
+    final_vcf = out_dir + "RegionIndel_final.vcf"
+    final_sort_vcf = out_dir + "RegionIndel_final_sorted.vcf"
     use_cmd = "cat " + snp_vcf + " "  + del_vcf + " " + ins_vcf + " > " + final_vcf 
     sort_cmd = "cat " + final_vcf + " | awk '$1 ~ /^#/ {print $0;next} {print $0 | \"LC_ALL=C sort -k1,1 -k2,2n\"}' > " + final_sort_vcf
     Popen(use_cmd,shell=True).wait()
@@ -283,9 +283,9 @@ def delete_files(del_dir):
 
 def main():
     if len(sys.argv) == 1:
-        Popen("python3 " + "AquilaSV_step3.py -h",shell=True).wait()
+        Popen("python3 " + "RegionIndel_step3.py -h",shell=True).wait()
     else:
-        out_dir = args.out_dir + "/Aquila_Step3_Result/"
+        out_dir = args.out_dir + "/RegionIndel_Step3_Result/"
         if os.path.exists(out_dir):
             print("using existing output folder: " + out_dir)
         else:
@@ -311,10 +311,10 @@ def main():
 
 
         #prepare files
-        cmd = "bgzip -c %sAquila_final_sorted.vcf >  %sAquila_final_sorted.vcf.gz;tabix -fp vcf %sAquila_final_sorted.vcf.gz"%(out_dir,out_dir,out_dir)
+        cmd = "bgzip -c %sRegionIndel_final_sorted.vcf >  %sRegionIndel_final_sorted.vcf.gz;tabix -fp vcf %sRegionIndel_final_sorted.vcf.gz"%(out_dir,out_dir,out_dir)
         Popen(cmd,shell=True).wait()
         #reformat
-        cmd = "python3  %sReformat.py -r  %s -i %sAquila_final_sorted.vcf -o %sAquila_Contig_final.vcf --add_header 19 --base_norm --gz_tbi"%(code_path,ref_file,out_dir,out_dir)
+        cmd = "python3  %sReformat.py -r  %s -i %sRegionIndel_final_sorted.vcf -o %sRegionIndel_Contig_final.vcf --add_header 19 --base_norm --gz_tbi"%(code_path,ref_file,out_dir,out_dir)
         Popen(cmd,shell=True).wait()
 
 

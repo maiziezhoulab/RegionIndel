@@ -255,8 +255,8 @@ if __name__ == "__main__":
     count_total_2 = 0
     logger.info("---------SNV candidates count")
     for chr_num in range(chr_start,chr_end + 1):
-        SNV_dict_contig_1 = Extract_SNV_info(out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp1.var.txt",out_dir + "SNV_dict_contig_1_chr" + str(chr_num) + ".p",chr_num)
-        SNV_dict_contig_2 = Extract_SNV_info(out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp2.var.txt",out_dir + "SNV_dict_contig_2_chr" + str(chr_num) + ".p",chr_num)
+        SNV_dict_contig_1 = Extract_SNV_info(out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp1.var.txt",out_dir + "SNV_dict_contig_1_chr" + str(chr_num) + ".p",chr_num)
+        SNV_dict_contig_2 = Extract_SNV_info(out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp2.var.txt",out_dir + "SNV_dict_contig_2_chr" + str(chr_num) + ".p",chr_num)
         logger.info("chr" + str(chr_num) + ":")
         logger.info("haplotype 1: "+str(len(SNV_dict_contig_1)))
         logger.info("haplotype 2: "+str(len(SNV_dict_contig_2)))
@@ -268,8 +268,8 @@ if __name__ == "__main__":
     logger.info("haplotype 2: %d"%count_total_2)
 
     for chr_num in range(chr_start,chr_end + 1):
-        ref_dict_contig_1 = Extract_ref_info(out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp1.var.txt",out_dir + "ref_dict_contig_1_chr" + str(chr_num) + ".p",chr_num)
-        ref_dict_contig_2 = Extract_ref_info(out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp2.var.txt",out_dir + "ref_dict_contig_2_chr" + str(chr_num) + ".p",chr_num)
+        ref_dict_contig_1 = Extract_ref_info(out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp1.var.txt",out_dir + "ref_dict_contig_1_chr" + str(chr_num) + ".p",chr_num)
+        ref_dict_contig_2 = Extract_ref_info(out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp2.var.txt",out_dir + "ref_dict_contig_2_chr" + str(chr_num) + ".p",chr_num)
 
     count_hetero_total = 0
     count_homo_total = 0
@@ -291,7 +291,7 @@ if __name__ == "__main__":
     logger.info("total_SNV:%d"%(count_hetero_total+count_homo_total))
 
 
-    vcf_output = out_dir + "Aquila_SNPs_chr" + str(chr_num) + ".vcf"
+    vcf_output = out_dir + "RegionIndel_SNPs_chr" + str(chr_num) + ".vcf"
     count_id = 1
     fw = open(vcf_output,"w")
     #fw.writelines("#CHROM" + "\t" + "POS" + "\t" + "ID" + "\t" + "REF" + "\t" + "ALT" + "\t" + "QUAL" + "\t" + "FILTER" + "\t" + "INFO" + "\t" + "FORMAT" + "\t"  + "SAMPLE" + "\n")

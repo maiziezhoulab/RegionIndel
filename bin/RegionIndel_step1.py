@@ -9,12 +9,12 @@ import glob
 script_path = os.path.dirname(os.path.abspath( __file__ ))
 code_path = script_path + "/" 
 __author__ = "Maizie&Can@Vandy"
-parser = ArgumentParser(description="Author: maiziezhoulab@gmail.com\n",usage='use "python3 %(prog)s --help" for more information')
+parser = ArgumentParser(description="Author: maiziezhoulab@gmail.com & lcdcfdu998@gmail.com \n",usage='use "python3 %(prog)s --help" for more information')
 parser.add_argument('--bam_file','-bam',help="bam file, called by Longranger/bwa-mem/EMA",required=True)
 parser.add_argument('--vcf_file','-v',help="vcf file, called by FreeBayes",required=True)
 parser.add_argument('--OER_dir','-oer')
 parser.add_argument('--chr_num','-chr',type=int,help="chromosome number for target variant or region", required=True)
-parser.add_argument('--out_dir','-o', help="Directory to store assembly results, default = ./AquilaSV_results",default="./AquilaSV_results")
+parser.add_argument('--out_dir','-o', help="Directory to store assembly results, default = ./RegionIndel_results",default="./RegionIndel_results")
 parser.add_argument('--num_threads','-t_chr',type=int,help="number of threads, default = 8 (recommended)", default=8)
 parser.add_argument('--num_threads_for_bwa_mem','-t',type=int,help="number of threads for bwa-mem, default = 20", default=20)
 parser.add_argument('--mole_boundary','-mb',type=int,help="We use 50kb to differentiate reads with the same barcode are drawn from different long molecules,50kb for 10X and 20kb for stLFR, default = 50000",default=50000)
@@ -90,7 +90,7 @@ def delete_files(del_dir):
 #if __name__ == "__main__":
 def main():
     if len(sys.argv) == 1:
-        Popen("python3 " + "AquilaSV_step1.py -h",shell=True).wait()
+        Popen("python3 " + "RegionIndel_step1.py -h",shell=True).wait()
     else:
         bam_file = args.bam_file
         vcf_file = args.vcf_file

@@ -12,7 +12,7 @@ code_path = script_path + "/"
 __author__ = "Maizie&Can@Vandy"
 parser = ArgumentParser(description="Author: maiziezhoulab@gmail.com\n",usage='use "python3 %(prog)s --help" for more information')
 parser.add_argument('--chr_num','-chr',type=int,help="chromosome number for target variant or region", required=True)
-parser.add_argument('--out_dir','-o', help="Directory to store assembly results, default = ./AquilaSV_results",default="./AquilaSV_results")
+parser.add_argument('--out_dir','-o', help="Directory to store assembly results, default = ./RegionIndel_results",default="./RegionIndel_results")
 #parser.add_argument('--reference','-ref', help="reference fasta file, run ./install to download it",required=True)
 parser.add_argument('--num_threads','-t',type=int,help="number of threads, default = 10, this correponds to number of small files get assembled simulateoulsy", default=10)
 parser.add_argument('--num_threads_spades','-t_spades',type=int,help="number of threads for spades, default = 5", default=5)
@@ -81,7 +81,7 @@ def fastq_to_bam(fasta_path,bam_path,ref_path):
 #if __name__ == "__main__":
 def main():
     if len(sys.argv) == 1:
-        Popen("python " + "AquilaSV_step2.py -h",shell=True).wait()
+        Popen("python " + "RegionIndel_step2.py -h",shell=True).wait()
     else:
         chr_start = args.chr_num
         chr_end = args.chr_num
@@ -118,9 +118,6 @@ def main():
 
         local_assembly_for_small_chunks(chr_start,chr_end,num_threads,num_threads_spades,Local_Assembly_dir,Assembly_Contigs_dir,assembler)
 
-       # cmd1 = "minimap2 -a  %s %sAquila_cutPBHC_minicontig_chr%d.fasta > %sAquila_cutPBHC_minicontig_chr%d.sam;"%(ref_idx_file,Assembly_Contigs_dir,chr_start,Assembly_Contigs_dir,chr_start)
-       # cmd2 = "samtools view -Sb %sAquila_cutPBHC_minicontig_chr%d.sam | samtools sort > %sAquila_Contig_chr%d.bam;"%(Assembly_Contigs_dir,chr_start,Assembly_Contigs_dir,chr_start)
-       # cmd3 = "samtools index %sAquila_Contig_chr%d.bam;rm %sAquila_cutPBHC_minicontig_chr%d.sam;"%(Assembly_Contigs_dir,chr_start,Assembly_Contigs_dir,chr_start)
        # with open("test.sh",'w') as f:
        #     f.write(cmd1+cmd2+cmd3)
        # Popen(cmd1+cmd2+cmd3,shell=True).wait()

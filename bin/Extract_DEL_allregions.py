@@ -228,10 +228,10 @@ if __name__ == "__main__":
     total_same_wrong = 0
     count_id = 1
     for chr_num in range(chr_start,chr_end + 1):
-        final_SV_vcf = out_dir + "Aquila_DEL_chr" + str(chr_num) +  ".vcf"
+        final_SV_vcf = out_dir + "RegionIndel_DEL_chr" + str(chr_num) +  ".vcf"
         fw = open(final_SV_vcf,"w")
-        SV_dict_contig_1 = Extract_SV_info(out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp1.var.txt",out_dir + "del_dict_contig_1_chr" + str(chr_num) + ".p", chr_num,v_size)
-        SV_dict_contig_2 = Extract_SV_info(out_dir + "Aquila_Contig_chr" + str(chr_num) + "_hp2.var.txt",out_dir + "del_dict_contig_2_chr" + str(chr_num) + ".p", chr_num,v_size)
+        SV_dict_contig_1 = Extract_SV_info(out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp1.var.txt",out_dir + "del_dict_contig_1_chr" + str(chr_num) + ".p", chr_num,v_size)
+        SV_dict_contig_2 = Extract_SV_info(out_dir + "RegionIndel_Contig_chr" + str(chr_num) + "_hp2.var.txt",out_dir + "del_dict_contig_2_chr" + str(chr_num) + ".p", chr_num,v_size)
         count_same_wrong = compare_two_haploid_SV(out_dir + "del_dict_contig_1_chr" + str(chr_num) + ".p", out_dir + "del_dict_contig_2_chr" + str(chr_num) + ".p", chr_num,out_dir )
         total_same_wrong += count_same_wrong
 

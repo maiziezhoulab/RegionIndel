@@ -285,7 +285,7 @@ logger = logging.getLogger(" ")
 # overlap_thresh = 0 
 # dist_thresh_del = 1000
 # output_dir = './'
-prefix = 'dippav_variant'
+prefix = 'RegionIndel'
 
 del_sig,ins_sig,vcf_dc,header = vcf_to_sig(vcf_path)
 print(len(del_sig))
