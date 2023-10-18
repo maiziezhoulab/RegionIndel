@@ -8,23 +8,25 @@ from joblib import Parallel, delayed
 import pickle
 import json
 code_path = os.path.dirname(os.path.abspath( __file__ ))+'/'
-#config_dc = json.load(open(code_path+'/config.txt'))
+
 
 parser = ArgumentParser(description="",usage='use "python3 %(prog)s --help" for more information')
 parser.add_argument('--input_path','-i')
 parser.add_argument('--output_dir','-o')
+parser.add_argument('--feedback_dir','-fd')
 parser.add_argument('--config_path','-conf')
 parser.add_argument('--n_thread','-t', type = int, default = 23)
 parser.add_argument('--delete_temp_file','-d', action='store_true')
 args = parser.parse_args()
 input_path = args.input_path
 output_dir = args.output_dir
+feedback_dir = args.feedback_dir
 config_path = args.config_path
 n_thread = args.n_thread
 
 
-config_dc = json.load(open(config_path))
-feedback_dir = config_dc['feedback']
+# config_dc = json.load(open(config_path))
+# feedback_dir = config_dc['feedback']
 import logging
 ## set logger
 logging.basicConfig(
