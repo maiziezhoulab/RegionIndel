@@ -1,0 +1,10 @@
+{"spades":"/data/maiziezhou_lab/CanLuo/Software/AquilaSV/bin/SPAdes-3.13.0-Linux/",
+"k8":"/data/maiziezhou_lab/CanLuo/Software/AquilaSV/bin/k8-0.2.4/",
+"paftools":"/data/maiziezhou_lab/CanLuo/Software/AquilaSV/bin/paftools/",
+"header":"/data/maiziezhou_lab/CanLuo/Software/AquilaSV/bin/header/",
+"feedback":"/data/maiziezhou_lab/CanLuo/Link_Reads_Project/oer_test3/feedback_v3/for_download/",
+"bamfile":"/data/maiziezhou_lab/Datasets/L5_NA24385_10x/hg19_longranger_align/by_chr/possorted_chr*.bam",
+"vcf":"/data/maiziezhou_lab/Datasets/L5_NA24385_10x/Freebayes_results_hg19/L5_hg19_ref_freebayes.vcf",
+"reference":"/data/maiziezhou_lab/CanLuo/long_reads_project/DipPAV2/hg19_ref_by_chr/hg19_chr*.fa",
+"bench":"/data/maiziezhou_lab/CanLuo/Link_Reads_Project/bench.vcf"
+}
