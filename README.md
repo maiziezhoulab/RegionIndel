@@ -151,7 +151,7 @@ Sometimes the result will have duplicate calls, and to remove these calls, you c
 
 If you have multiple interested regions, you can save the regions into a BED file and use our example script **bin/mt_region_RegionIndel.sh** to detect SVs in multiple regions. Make sure you change the parameters in the bash script before you run it. The parameters are explained below:
 
-'''
+```
 #-----------------Parameter------------
 
 bed_file="test.bed"  # Specify your BED file
@@ -161,7 +161,7 @@ oerdir=./OER/part2   # the OER file generated in step 0
 reference=genome_hg19.fa # reference file
 RegionInde_dir=./RegionIndel/ # RegionIndel install directory
 
-'''
+```
 
 
 #### Memory/Time Usage For RegionIndel
