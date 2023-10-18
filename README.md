@@ -145,7 +145,7 @@ python3 RegionIndel/bin/remove_redundancy.py.py   \
 
 ```
 
-Sometimes the results will have duplicate calls, and to remove these calls, you can use **remove_redundancy.py**. 
+Sometimes the result will have duplicate calls, and to remove these calls, you can use **remove_redundancy.py**. 
 
 
 #### Memory/Time Usage For RegionIndel
