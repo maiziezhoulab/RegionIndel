@@ -140,7 +140,7 @@ python3 RegionIndel/bin/RegionIndel_step3.py  --assembly_dir test_sv  --ref_file
 ### Step 4 (optional): 
 ```
 python3 RegionIndel/bin/remove_redundancy.py   \
--i ./test_sv/RegionIndel_Step3_Results/RegionIndel_Contig_final_sorted_sv.vcf  \
+-i ./test_sv/RegionIndel_Step3_Results/RegionIndel_Contig_final_sorted.vcf  \
 -o ./test_sv/Remove_redundancy/
 
 ```
