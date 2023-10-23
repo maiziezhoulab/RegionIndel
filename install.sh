@@ -26,7 +26,7 @@ fi
 
 
 
-echo 'You have installed AquilaSV dependencies and downloaded the source files successfully!'
+echo 'You have installed RegionIndel dependencies and downloaded the source files successfully!'
  
 
 
