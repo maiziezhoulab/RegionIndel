@@ -11,11 +11,18 @@ AquilaSV_exampledata
 |-genome_hg19.fa         
 ```
 
-Run the whole pipeline:
+Run the whole pipeline (You need to provide the OER folder generated in step 0):
 ```
-python AquilaSV/bin/AquilaSV_step1.py --bam_file selected.bam --vcf_file test_freebayes.vcf --chr_num 3 --out_dir test_sv
+python3 RegionIndel/bin/RegionIndel_step1.py  --bam_file selected.bam --vcf_file test_freebayes.vcf --chr_num 3 --out_dir test_sv --fd ./OER/part2
 
-python AquilaSV/bin/AquilaSV_step2.py --out_dir test_sv --chr_num 3 --reference genome_hg19.fa
 
-python AquilaSVbin/AquilaSV_step3.py  --assembly_dir test_sv  --ref_file genome_hg19.fa  --chr_num 3 
+python3 RegionIndel/bin/RegionIndel_step2.py --out_dir test_sv --chr_num 3 --reference genome_hg19.fa
+
+
+python3 RegionIndel/bin/RegionIndel_step3.py  --assembly_dir test_sv  --ref_file genome_hg19.fa  --chr_num 3 
+
+
+python3 RegionIndel/bin/remove_redundancy.py   \
+-i ./test_sv/RegionIndel_Step3_Results/RegionIndel_Contig_final_sorted_sv.vcf  \
+-o ./test_sv/Remove_redundancy/
 ```
