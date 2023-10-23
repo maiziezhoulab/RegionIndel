@@ -195,7 +195,7 @@ test_sv
 |    └-RegionIndel_Contig_chr*_hp2.fasta                     --> (final contigs fasta file for haplotype 2)
 |
 └-RegionIndel_step3_results
-     └-RegionIndel_Contig_final.vcf --> (final VCF including SNPs, small Indels and SVs)
+     └-RegionIndel_Contig_final_sorted.vcf --> (final VCF including SNPs, small Indels and SVs)
      
      
 ```
