@@ -20,7 +20,7 @@ After running "./install.sh", a folder "source" would be downloaded.
 
 ## Running The Code:
 Put the "RegionIndel/bin" in the ".bashrc" file, and source the ".bashrc" file <br />
-Or just use the fullpath of "**RegionIndel_step1.py**", "**RegionIndel_step2.py**" and "**RegionIndel_step3.py**"
+Or just use the full path of "**RegionIndel_step1.py**", "**RegionIndel_step2.py**" and "**RegionIndel_step3.py**"
 
 *We provide  <a href="https://github.com/maiziezhoulab/RegionIndel/blob/main/example_data/run_example_data.md">a test example dataset</a> to run the whole pipeline. 
 
@@ -75,7 +75,7 @@ python3 RegionIndel/bin/RegionIndel_step1.py  --bam_file selected.bam --vcf_file
 ```
 #### *Required parameters
 
-**--bam_file:** "selected.bam" is a bam file generated from BWA-MEM/LongRanger/EMA and samtools. How to get the bam file, you can also check <a href="https://github.com/maiziezhoulab/RegionIndel/blob/master/src/How_to_get_bam_and_vcf.md">here</a>.
+**--bam_file:** "selected.bam" is a bam file for a target region. How to get the bam file, you can also check <a href="https://github.com/maiziezhoulab/RegionIndel/blob/master/src/How_to_get_bam_and_vcf.md">here</a>.
 
 **--vcf_file:** "test_freebayes.vcf" is a VCF file generated from variant caller like "FreeBayes". How to get the vcf file, you can also check <a href="https://github.com/maiziezhoulab/RegionIndel/blob/master/src/How_to_get_bam_and_vcf.md">here</a>. 
 
@@ -159,7 +159,7 @@ wgsbam=possorted_bam.bam #your whole genome bam file
 wgsvcf=possorted_bam_freebayes.vcf #your whole genome VCF file
 oerdir=./OER/part2   # the OER file generated in step 0
 reference=genome_hg19.fa # reference file
-RegionInde_dir=./RegionIndel/ # RegionIndel install directory
+RegionInde_dir=./RegionIndel/ # RegionIndel install directory (The full path the user installs RegionIndel)
 
 ```
 
