@@ -70,7 +70,7 @@ After running the above code, you will have output folder "./OER/part2" that con
 
 ### Step 1: 
 ```
-python3 RegionIndel/bin/RegionIndel_step1.py  --bam_file selected.bam --vcf_file test_freebayes.vcf --chr_num 3 --out_dir test_sv --fd ./OER/part2
+python3 RegionIndel/bin/RegionIndel_step1.py  --bam_file selected.bam --vcf_file test_freebayes.vcf --chr_num 3 --out_dir test_sv --OER_dir ./OER/part2
 
 ```
 #### *Required parameters
