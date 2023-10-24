@@ -118,7 +118,7 @@ python3 RegionIndel/bin/RegionIndel_step2.py --out_dir test_sv --chr_num 3
 
 ### Step 3: 
 ```
-python3 RegionIndel/bin/RegionIndel_step3.py  --assembly_dir test_sv  --ref_file genome_hg19.fa  --chr_num 3 
+python3 RegionIndel/bin/RegionIndel_step3.py  --assembly_dir test_sv  -o_dir test_sv --ref_file genome_hg19.fa  --chr_num 3 
 
 ```
 #### *Required parameters
