@@ -99,7 +99,7 @@ python3 RegionIndel/bin/RegionIndel_step1.py  --bam_file selected.bam --vcf_file
 
 ### Step 2: 
 ```
-python3 RegionIndel/bin/RegionIndel_step2.py --out_dir test_sv --chr_num 3 --reference genome_hg19.fa
+python3 RegionIndel/bin/RegionIndel_step2.py --out_dir test_sv --chr_num 3 
 
 ```
 #### *Required parameters
