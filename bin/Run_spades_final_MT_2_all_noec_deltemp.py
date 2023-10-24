@@ -12,7 +12,8 @@ import multiprocessing
 import json
 script_path = os.path.dirname(os.path.abspath( __file__ ))
 code_path = script_path + "/" 
-spades_path = json.load(open(code_path+'/config.txt'))['spades']
+# spades_path = json.load(open(code_path+'/config.txt'))['spades']
+spades_path = code_path + "/SPAdes-3.13.0-Linux/"
 parser = ArgumentParser(description="run local assembly by spades:")
 parser.add_argument('--num_threads','-nt', help="number of threads",default=30)
 parser.add_argument('--num_threads_spades','-nt_spades', help="number of threads for spades",default=5)

@@ -9,9 +9,10 @@ import sys
 import json
 script_path = os.path.dirname(os.path.abspath( __file__ ))
 code_path = script_path + "/" 
-config_dc = json.load(open(code_path+'/config.txt'))
-paftools_path = config_dc['paftools']
-k8_path = config_dc['k8']
+# config_dc = json.load(open(code_path+'/config.txt'))
+
+paftools_path = code_path +"/paftools"
+k8_path = code_path + '/k8-0.2.4'
 
 parser = ArgumentParser(description="Run depth all:")
 parser.add_argument('--chr_num','-start',type=int,help="chromosome number for target variant or region", required=True)

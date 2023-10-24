@@ -49,12 +49,12 @@ def Extract_reads_for_small_chunks(chr_start,chr_end,h5_dir,phased_file_dir,Loca
     use_cmd = "python3 " + code_path + "Run_extract_reads_for_smallchunks_all_lessmem.py" + " --phase_cut_folder " + phased_file_dir + " --chr_start " + str(chr_start) + " --chr_end " + str(chr_end) + " --out_dir " + Local_Assembly_dir + " --h5_folder " + h5_dir +  " --fastq_folder " + Raw_fastqs_dir  + " --sample_name " + sample_name + " --num_threads " +   str(num_threads)
     Popen(use_cmd,shell=True).wait()
 
-def Add_one_end_mapped_reads(out_dir,Local_Assembly_dir,chr_start, feedback_dir):
+def Add_one_end_mapped_reads(bamfile, Local_Assembly_dir,chr_start, feedback_dir):
     logger.info("collect one end mapped reads...")
     fastq_dir = "%s/chr%d_files_cutPBHC/"%(Local_Assembly_dir,chr_start)
 
-    cmd = "python3 " + code_path + "/collect_one_end_mapped_reads_v3.py -i %s/selected.bam -o %s -fd %s"%(
-            out_dir,
+    cmd = "python3 " + code_path + "/collect_one_end_mapped_reads_v3.py -i %s -o %s -oer %s"%(
+        bamfile,
             fastq_dir,
             feedback_dir
             )
@@ -117,7 +117,7 @@ def main():
         Haplotying_fragments(chr_start,chr_end,phased_file_dir,h5_dir,sample_name)
         Get_fastq_files_total(bam_file,chr_start,chr_end,num_threads_for_bwa_mem,Raw_fastqs_dir,Sorted_bam_dir)
         Extract_reads_for_small_chunks(chr_start,chr_end,h5_dir,phased_file_dir,Local_Assembly_dir,Raw_fastqs_dir,sample_name,12)
-        Add_one_end_mapped_reads(args.out_dir,Local_Assembly_dir,chr_start, feedback_dir)
+        Add_one_end_mapped_reads(bam_file,Local_Assembly_dir,chr_start, feedback_dir)
 
 
         if deletion_mode==1:       

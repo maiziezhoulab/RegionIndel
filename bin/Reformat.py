@@ -4,8 +4,8 @@ import os
 import json
 script_path = os.path.dirname(os.path.abspath( __file__ ))
 code_path = script_path + "/" 
-config_dc = json.load(open(code_path+'/config.txt'))
-header_path = config_dc['header']
+# config_dc = json.load(open(code_path+'/config.txt'))
+header_path = code_path + '/header/'
 parser = ArgumentParser(description="Author: xzhou15@cs.stanford.edu\n liuyichen@std.uestc.edu.cn\n",usage='use "python3 %(prog)s --help" for more information')
 parser.add_argument('--ref_fa','-r',help="Reference fasta file for reformat",required=True)
 parser.add_argument('--in_vcf','-i',help="Original vcf file",required=True)
