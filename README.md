@@ -139,8 +139,13 @@ python3 RegionIndel/bin/RegionIndel_step3.py  --assembly_dir test_sv  -o_dir tes
 
 ### Step 4 (optional): 
 ```
+#----------extract SVs
+cat ./test_sv/RegionIndel_Step3_Result/RegionIndel_Contig_final_sorted.vcf \
+	| awk '($1 ~ /^#/ || length($5) - length($(4)) > 30 || length($4) - length($(5)) > 30 )' \
+	> ./test_sv/RegionIndel_Step3_Result/RegionIndel_Contig_final_sorted_sv.vcf
+
 python3 RegionIndel/bin/remove_redundancy.py   \
--i ./test_sv/RegionIndel_Step3_Results/RegionIndel_Contig_final_sorted.vcf  \
+-i ./test_sv/RegionIndel_Step3_Result/RegionIndel_Contig_final_sorted.vcf  \
 -o ./test_sv/Remove_redundancy/
 
 ```
