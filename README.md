@@ -145,7 +145,7 @@ cat ./test_sv/RegionIndel_Step3_Result/RegionIndel_Contig_final_sorted.vcf \
 	> ./test_sv/RegionIndel_Step3_Result/RegionIndel_Contig_final_sorted_sv.vcf
 
 python3 RegionIndel/bin/remove_redundancy.py   \
--i ./test_sv/RegionIndel_Step3_Result/RegionIndel_Contig_final_sorted.vcf  \
+-i ./test_sv/RegionIndel_Step3_Result/RegionIndel_Contig_final_sorted_sv.vcf  \
 -o ./test_sv/Remove_redundancy/
 
 ```
