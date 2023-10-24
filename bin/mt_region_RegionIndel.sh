@@ -39,19 +39,24 @@ while IFS=$'\t' read -r chr start end rest; do
 	# step2 assmebly
 	python3 ${RegionInde_dir}/bin/RegionIndel_step2.py \
 	--out_dir $outdir/ \
-	--chr_num $chr \
-	--reference $reference
+	--chr_num $chr 
 
 
 	# step3 variant call
 	python3 ${RegionInde_dir}/bin/RegionIndel_step3.py  \
 	--assembly_dir $outdir/  \
+ 	-o_dir $outdir/  \
 	--ref_file $reference  \
 	--chr_num $chr
 
+ 	#extract SV
+ 	cat $outdir/RegionIndel_Step3_Result/RegionIndel_Contig_final_sorted.vcf \
+	| awk '($1 ~ /^#/ || length($5) - length($(4)) > 30 || length($4) - length($(5)) > 30 )' \
+	> $outdir/RegionIndel_Step3_Result/RegionIndel_Contig_final_sorted_sv.vcf
+
 	# step4 remove redundancy
 	python3 ${RegionInde_dir}/bin/remove_redundancy.py.py   \
-	-i $outdir/RegionIndel_Step3_Results/RegionIndel_Contig_final_sorted_sv.vcf  \
+	-i $outdir/RegionIndel_Step3_Result/RegionIndel_Contig_final_sorted_sv.vcf  \
 	-o $outdir/Remove_redundancy/
 
 
