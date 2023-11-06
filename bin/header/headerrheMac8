@@ -1,0 +1,9 @@
+##fileformat=VCFv4.0
+##fileDate=20200504
+##source=aquila
+##reference=rheMac8
+##INFO=<ID=SVTYPE,Number=1,Type=String,Description="variant type">
+##FILTER=<ID=q10,Description="Quality below 10">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=Contig,Number=1,Type=String,Description="Contig information">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	SAMPLE    
