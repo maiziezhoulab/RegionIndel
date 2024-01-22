@@ -25,7 +25,7 @@ cd ..
 #     echo 'using existing minimap2...'
 # fi
 
-
+conda env create -f environment.yml
 
 echo 'You have installed RegionIndel dependencies and downloaded the source files successfully!'
  

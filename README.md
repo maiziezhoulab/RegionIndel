@@ -2,8 +2,8 @@
 
 
 ## Dependencies for Github installation:
-RegionIndel utilizes <a href="https://www.python.org/downloads/">Python3 (+ numpy, pysam, sortedcontainers, and scipy)</a>, <a href="http://samtools.sourceforge.net/">SAMtools</a>, and <a href="https://github.com/lh3/minimap2">minimap2</a>. To be able to execute the above programs by typing their name on the command line, the program executables must be in one of the directories listed in the PATH environment variable (".bashrc"). <br />
-Or you could just run "./install.sh" to check their availability and install them if not, but make sure you have installed "python3", "conda" and "wget" first. 
+To install RegionIndel, you should have conda installed. You can check [here](https://conda.io/projects/conda/en/latest/user-guide/install/linux.html) to install conda on a linux machine. 
+Then, you could just run "./install.sh" to install RegionIndel. 
 
 # Install through Github:
 
@@ -14,14 +14,17 @@ chmod +x install.sh
 ./install.sh
 ```
 
-
-## source folder:
-After running "./install.sh", a folder "source" would be downloaded.
+After running "./install.sh", a virtual environment "regionindel-env" will be installed.
 
 ## Running The Code:
 Put the "RegionIndel/bin" in the ".bashrc" file, and source the ".bashrc" file <br />
 Or just use the full path of "**RegionIndel_step1.py**", "**RegionIndel_step2.py**" and "**RegionIndel_step3.py**"
 
+Actiavte the virtual environment before running RegionIndel.
+
+```
+conda activate regionindel-env
+```
 *We provide  <a href="https://github.com/maiziezhoulab/RegionIndel/blob/main/example_data/run_example_data.md">a test example dataset</a> to run the whole pipeline. 
 
 ### Step 0:
