@@ -214,6 +214,9 @@ test_sv
 </p>
 
 
+## Cite RegionIndel 
+C. Luo, B. A. Peters, X. M. Zhou. Large indel detection in region-based phased diploid assemblies from linked-reads. BMC Genomics (2025) 26:263. 
+
 ## Troubleshooting:
 ##### Please submit issues on the github page for <a href="https://github.com/maiziezhoulab/RegionIndel/issues">RegionIndel</a>. 
 
